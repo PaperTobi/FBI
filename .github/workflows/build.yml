@@ -18,10 +18,10 @@ jobs:
           pwd
           find . -name "*.csproj"
       
-      - name: Set up .NET 8.0
+      - name: Set up .NET 9.0
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0'
+          dotnet-version: '9.0'
       
       - name: Restore dependencies
         run: dotnet restore Komprimieren/Komprimieren.csproj
