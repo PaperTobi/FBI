@@ -16,19 +16,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3  # Klont das Repository
 
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v3  # Installiert die .NET SDK
+      - name: Set up .NET 7.0
+        uses: actions/setup-dotnet@v3  # Installiert das .NET SDK
         with:
-          dotnet-version: '8.0'  # Hier kannst du die Version anpassen, z.B. '6.0', '7.0', etc.
+          dotnet-version: '7.0'  # Hier kannst du die Version anpassen, z.B. '6.0', '7.0', etc.
 
       - name: Restore dependencies
-        run: dotnet restore Komprimieren/Komprimieren.csproj  # Projekt im 'Komprimieren'-Ordner wiederherstellen
+        run: dotnet restore Komprimieren/Komprimieren.csproj  # Stellt Abhängigkeiten für das Projekt im 'Komprimieren'-Ordner wieder her
         working-directory: Komprimieren  # Arbeitsverzeichnis auf den 'Komprimieren'-Ordner setzen
 
       - name: Build
-        run: dotnet build --no-restore Komprimieren/Komprimieren.csproj  # Projekt im 'Komprimieren'-Ordner bauen
+        run: dotnet build --no-restore Komprimieren/Komprimieren.csproj  # Baut das Projekt im 'Komprimieren'-Ordner
         working-directory: Komprimieren  # Arbeitsverzeichnis auf den 'Komprimieren'-Ordner setzen
 
       - name: Run Tests
-        run: dotnet test Komprimieren/Komprimieren.csproj  # Tests im 'Komprimieren'-Ordner ausführen
+        run: dotnet test Komprimieren/Komprimieren.csproj  # Führt Tests aus, wenn vorhanden
         working-directory: Komprimieren  # Arbeitsverzeichnis auf den 'Komprimieren'-Ordner setzen
