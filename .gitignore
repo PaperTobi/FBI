@@ -1,0 +1,45 @@
+# Ignore user-specific files and folders for Rider
+.idea/
+
+# Ignore build output directories
+bin/
+obj/
+
+# Ignore NuGet packages folder
+/packages/
+
+# Ignore compiled DLLs and other binary files
+*.dll
+*.exe
+*.pdb
+*.app
+*.so
+*.dylib
+
+# Ignore ASP.NET temporary files
+*.vspscc
+.vs/
+.vscode/
+.vsconfig
+
+# Ignore Rider-specific config files
+.idea/.idea
+
+# Ignore JetBrains Rider specific logs and settings
+.idea/.idea
+.idea/.idea/*
+.idea/.idea/...
+.idea/.idea/*
+
+# Ignore user-specific files
+.idea/.idea
+
+# Ignore Node and NPM (for front-end development)
+node_modules/
+
+# Ignore build results
+.DS_Store
+Thumbs.db
+
+# Ignore other OS-specific files
+.vscode/
