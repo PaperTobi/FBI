@@ -38,7 +38,7 @@ jobs:
         with:
           tag_name: v${{ github.event.inputs.version }}
           files: |
-            Komprimieren/bin/Release/net8.0/win-x64/publish/Komprimieren.exe
+            Komprimieren/bin/Release/net9.0/win-x64/publish/Komprimieren.exe
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
