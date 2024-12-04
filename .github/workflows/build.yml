@@ -19,7 +19,7 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@v3  # Installiert die .NET SDK
         with:
-          dotnet-version: '9.0'  # Hier kannst du die Version anpassen, z.B. '6.0', '7.0', etc.
+          dotnet-version: '8.0'  # Hier kannst du die Version anpassen, z.B. '6.0', '7.0', etc.
 
       - name: Restore dependencies
         run: dotnet restore Komprimieren/Komprimieren.csproj  # Projekt im 'Komprimieren'-Ordner wiederherstellen
