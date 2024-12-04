@@ -1,0 +1,31 @@
+name: .NET Build
+
+on:
+  push:
+    branches:
+      - main    # Hier kannst du den Branch anpassen, z.B. "main" oder "master"
+  pull_request:
+    branches:
+      - main    # Hier kannst du den Branch anpassen, z.B. "main" oder "master"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Der Job läuft auf einem Ubuntu-Runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Klont das Repository
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3  # Installiert die .NET SDK
+        with:
+          dotnet-version: '7.0'  # Hier kannst du die Version anpassen, z.B. '6.0', '7.0', etc.
+
+      - name: Restore dependencies
+        run: dotnet restore  # Lädt alle NuGet-Pakete herunter
+
+      - name: Build
+        run: dotnet build --no-restore  # Baut das Projekt ohne die Abhängigkeiten erneut herunterzuladen
+
+      - name: Run Tests
+        run: dotnet test  # Führt alle Tests aus, wenn vorhanden
