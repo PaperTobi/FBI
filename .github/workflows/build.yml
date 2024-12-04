@@ -16,7 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3  # Klont das Repository
 
-      - name: Set up .NET 7.0
+      - name: Set up .NET 8.0
         uses: actions/setup-dotnet@v3  # Installiert das .NET SDK
         with:
           dotnet-version: '8.0'  # Hier kannst du die Version anpassen, z.B. '6.0', '7.0', etc.
