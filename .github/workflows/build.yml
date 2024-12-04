@@ -22,10 +22,13 @@ jobs:
           dotnet-version: '7.0'  # Hier kannst du die Version anpassen, z.B. '6.0', '7.0', etc.
 
       - name: Restore dependencies
-        run: dotnet restore  # Lädt alle NuGet-Pakete herunter
+        run: dotnet restore Komprimieren/Komprimieren.csproj  # Stellt Abhängigkeiten für das Projekt im 'Komprimieren'-Ordner wieder her
+        working-directory: Komprimieren  # Arbeitsverzeichnis auf den 'Komprimieren'-Ordner setzen
 
       - name: Build
-        run: dotnet build --no-restore  # Baut das Projekt ohne die Abhängigkeiten erneut herunterzuladen
+        run: dotnet build --no-restore Komprimieren/Komprimieren.csproj  # Baut das Projekt im 'Komprimieren'-Ordner
+        working-directory: Komprimieren  # Arbeitsverzeichnis auf den 'Komprimieren'-Ordner setzen
 
       - name: Run Tests
-        run: dotnet test  # Führt alle Tests aus, wenn vorhanden
+        run: dotnet test Komprimieren/Komprimieren.csproj  # Führt Tests im 'Komprimieren'-Ordner aus
+        working-directory: Komprimieren  # Arbeitsverzeichnis auf den 'Komprimieren'-Ordner setzen
