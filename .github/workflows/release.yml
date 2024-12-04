@@ -31,7 +31,7 @@ jobs:
         run: |
           cd Komprimieren
           dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true
-          cd bin/Release/net8.0/win-x64/publish
+          cd bin/Release/net9.0/win-x64/publish
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
