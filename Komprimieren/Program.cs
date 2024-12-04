@@ -23,7 +23,7 @@ class BinaryCompress
         StreamWriter o_SW = new StreamWriter(s_Datei);
         o_SW.WriteLine(s_Text);
         o_SW.Close();
-        Console.WriteLine("Sollte geschrieben sein lol");
+        Console.WriteLine("Sollte geschrieben sein");
     }
 
     static string LesenUndKonvertieren(string s_Datei)
@@ -45,23 +45,10 @@ class BinaryCompress
         if (content.Length == 0) return "";
 
         string komprimierterInhalt = "";
-        char currentChar = content[0];
-        int count = 1;
-
-        for (int i = 1; i < content.Length; i++)
+        foreach (char c in content)
         {
-            if (content[i] == currentChar)
-            {
-                count++;
-            }
-            else
-            {
-                komprimierterInhalt += "{" + count + currentChar + "} ";
-                currentChar = content[i];
-                count = 1;
-            }
+            komprimierterInhalt += "{1" + c;
         }
-        komprimierterInhalt += "{" + count + currentChar;
         return komprimierterInhalt;
     }
 
