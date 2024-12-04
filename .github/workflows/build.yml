@@ -3,10 +3,10 @@ name: .NET Build
 on:
   push:
     branches:
-      - main    # Hier kannst du den Branch anpassen, z.B. "main" oder "master"
+      - main  # Hier kannst du den Branch anpassen, z.B. "main" oder "master"
   pull_request:
     branches:
-      - main    # Hier kannst du den Branch anpassen, z.B. "main" oder "master"
+      - main  # Hier kannst du den Branch anpassen, z.B. "main" oder "master"
 
 jobs:
   build:
@@ -22,19 +22,19 @@ jobs:
           dotnet-version: '8.0'  # Hier kannst du die Version anpassen, z.B. '6.0', '7.0', etc.
 
       - name: List files in repository
-        run: ls -R  # Listet alle Dateien im Repository auf, um die Struktur zu überprüfen
+        run: ls -R  # Listet den gesamten Inhalt des Repositories auf, um die Struktur zu überprüfen
 
       - name: List files in Komprimieren directory
         run: ls -R Komprimieren  # Listet die Dateien im 'Komprimieren'-Ordner auf
 
       - name: Restore dependencies
         run: dotnet restore Komprimieren/Komprimieren.csproj  # Stellt Abhängigkeiten für das Projekt im 'Komprimieren'-Ordner wieder her
-        working-directory: Komprimieren  # Arbeitsverzeichnis auf den 'Komprimieren'-Ordner setzen
+        working-directory: ./Komprimieren  # Arbeitsverzeichnis auf den 'Komprimieren'-Ordner setzen
 
       - name: Build
         run: dotnet build --no-restore Komprimieren/Komprimieren.csproj  # Baut das Projekt im 'Komprimieren'-Ordner
-        working-directory: Komprimieren  # Arbeitsverzeichnis auf den 'Komprimieren'-Ordner setzen
+        working-directory: ./Komprimieren  # Arbeitsverzeichnis auf den 'Komprimieren'-Ordner setzen
 
       - name: Run Tests
         run: dotnet test Komprimieren/Komprimieren.csproj  # Führt Tests aus, wenn vorhanden
-        working-directory: Komprimieren  # Arbeitsverzeichnis auf den 'Komprimieren'-Ordner setzen
+        working-directory: ./Komprimieren  # Arbeitsverzeichnis auf den 'Komprimieren'-Ordner setzen
