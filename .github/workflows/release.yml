@@ -9,13 +9,30 @@ on:
         default: '1.0.0'
 
 jobs:
-  release:
+  trigger-build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Trigger Build Workflow
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const dispatch = await github.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'build_komprimieren.yml',
+              ref: context.ref,
+              inputs: {
+                version: '${{ github.event.inputs.version }}',
+              },
+            });
 
-      - name: Download Build Artifacts
+            console.log('Triggered build workflow:', dispatch);
+
+  release:
+    needs: trigger-build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Build Artifact
         uses: actions/download-artifact@v3
         with:
           name: komprimieren-executable

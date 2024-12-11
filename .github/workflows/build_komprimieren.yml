@@ -1,10 +1,11 @@
 name: Build Komprimieren
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
 
 jobs:
   build:
@@ -23,7 +24,7 @@ jobs:
           cd Komprimieren
           dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true
 
-      - name: Upload Build Artifacts
+      - name: Upload Build Artifact
         uses: actions/upload-artifact@v3
         with:
           name: komprimieren-executable
