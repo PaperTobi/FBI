@@ -13,18 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Build Workflow
-        uses: actions/github-script@v6
+        uses: benc-uk/workflow-dispatch@v1
         with:
-          script: |
-            await github.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'build_komprimieren.yml', // Name des Build-Workflows
-              ref: 'main', // Passe den Branch an, falls nötig
-              inputs: {
-                version: '${{ github.event.inputs.version }}',
-              },
-            });
+          workflow: build_komprimieren.yml
+          ref: main # Passe den Branch an, falls nötig
+          inputs: |
+            version=${{ github.event.inputs.version }}
 
   release:
     needs: trigger-build
