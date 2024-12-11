@@ -27,7 +27,7 @@ jobs:
           git tag -a v${{ github.event.inputs.version }} -m "Release version ${{ github.event.inputs.version }}"
           git push origin v${{ github.event.inputs.version }}
 
-      - name: Build Executable
+      - name: Build Executable Komprimieren
         run: |
           cd Komprimieren
           dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true
