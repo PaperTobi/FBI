@@ -11,22 +11,17 @@ on:
 jobs:
   trigger-build:
     runs-on: ubuntu-latest
+    outputs:
+      artifact-url: ${{ steps.trigger.outputs.artifact-url }}
     steps:
       - name: Trigger Build Workflow
-        uses: actions/github-script@v6
+        id: trigger
+        uses: benc-uk/workflow-dispatch@v1
         with:
-          script: |
-            const dispatch = await github.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'build_komprimieren.yml',
-              ref: context.ref,
-              inputs: {
-                version: '${{ github.event.inputs.version }}',
-              },
-            });
-
-            console.log('Triggered build workflow:', dispatch);
+          workflow: build_komprimieren.yml
+          ref: main # Passe den Branch an, falls nötig
+          inputs: |
+            version=${{ github.event.inputs.version }}
 
   release:
     needs: trigger-build
