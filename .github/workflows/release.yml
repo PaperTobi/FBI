@@ -15,10 +15,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v3
         with:
-          dotnet-version: '9.0'
+          name: komprimieren-executable
 
       - name: Create Git Tag
         run: |
@@ -27,18 +27,11 @@ jobs:
           git tag -a v${{ github.event.inputs.version }} -m "Release version ${{ github.event.inputs.version }}"
           git push origin v${{ github.event.inputs.version }}
 
-      - name: Build Executable
-        run: |
-          cd Komprimieren
-          dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true
-          cd bin/Release/net9.0/win-x64/publish
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ github.event.inputs.version }}
           files: |
-            Komprimieren/bin/Release/net9.0/win-x64/publish/Komprimieren.exe
-
+            Komprimieren.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
