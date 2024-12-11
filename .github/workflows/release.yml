@@ -19,8 +19,8 @@ jobs:
             await github.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: 'build_komprimieren.yml', # Name des Build-Workflows
-              ref: 'main', # Passe den Branch an, falls nötig
+              workflow_id: 'build_komprimieren.yml', // Name des Build-Workflows
+              ref: 'main', // Passe den Branch an, falls nötig
               inputs: {
                 version: '${{ github.event.inputs.version }}',
               },
