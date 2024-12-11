@@ -1,4 +1,5 @@
-﻿using System;
+#Copyright ©PaperTobi
+using System;
 using System.IO;
 
 class BinaryCompress
