@@ -9,25 +9,16 @@ on:
         default: '1.0.0'
 
 jobs:
-  trigger-build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger Build Workflow
-        uses: benc-uk/workflow-dispatch@v1
-        with:
-          workflow: build_komprimieren.yml
-          ref: main # Passe den Branch an, falls nötig
-          inputs: |
-            version=${{ github.event.inputs.version }}
-
   release:
-    needs: trigger-build
     runs-on: ubuntu-latest
     steps:
-      - name: Download Build Artifact
-        uses: actions/download-artifact@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
         with:
-          name: komprimieren-executable
+          dotnet-version: '9.0'
 
       - name: Create Git Tag
         run: |
@@ -36,11 +27,18 @@ jobs:
           git tag -a v${{ github.event.inputs.version }} -m "Release version ${{ github.event.inputs.version }}"
           git push origin v${{ github.event.inputs.version }}
 
+      - name: Build Executable
+        run: |
+          cd Komprimieren
+          dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true
+          cd bin/Release/net9.0/win-x64/publish
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ github.event.inputs.version }}
           files: |
-            Komprimieren.exe
+            Komprimieren/bin/Release/net9.0/win-x64/publish/Komprimieren.exe
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
