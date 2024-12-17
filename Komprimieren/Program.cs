@@ -1,4 +1,4 @@
-#Copyright ©PaperTobi
+//Copyright PaperTobi
 using System;
 using System.IO;
 
