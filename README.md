@@ -97,5 +97,5 @@ dotnet run
 Dieses Projekt steht unter der [MIT-Lizenz](LICENSE).
 
 ## Autor
-Ein Typ und nochn Typ und noch Typ und [@ThomasMouraBachmann](https://github.com/ThomasMouraBachmann)
+Ein Typ und nochn Typ und noch Typ und [@PaperTobi](https://github.com/PaperTobi)[@ThomasMouraBachmann](https://github.com/ThomasMouraBachmann)
 
