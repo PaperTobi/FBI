@@ -9,49 +9,47 @@ class Program
     {
         string s_Datei = "Datei.txt";
         string s_DateiKomprimiert = "komprimierteDatei.txt";
-        string binaryContent = LesenUndKonvertieren(s_Datei);
-        string komprimierterInhalt = Komprimieren(binaryContent);
+        string s_BinaryContent = LesenUndKonvertieren(s_Datei);
+        string s_KomprimierterInhalt = Komprimieren(s_BinaryContent);
     }
-
 
     static string LesenUndKonvertieren(string s_Datei)
     {
-        StringBuilder binaryContent = new StringBuilder();
-        using (FileStream fs = new FileStream(s_Datei, FileMode.Open, FileAccess.Read))
+        StringBuilder sb_BinaryContent = new StringBuilder();
+        using (FileStream fs_Datei = new FileStream(s_Datei, FileMode.Open, FileAccess.Read))
         {
-            int b;
-            while ((b = fs.ReadByte()) != -1)
+            int i_Byte;
+            while ((i_Byte = fs_Datei.ReadByte()) != -1)
             {
-                binaryContent.Append(Convert.ToString(b, 2).PadLeft(8, '0'));
+                sb_BinaryContent.Append(Convert.ToString(i_Byte, 2).PadLeft(8, '0'));
             }
         }
-        return binaryContent.ToString();
+        return sb_BinaryContent.ToString();
     }
 
-static string Komprimieren(string binaryContent)
+    static string Komprimieren(string s_BinaryContent)
     {
-        if (binaryContent.Length == 0) return "";
+        if (s_BinaryContent.Length == 0) return "";
 
-        StringBuilder komprimierterInhalt = new StringBuilder();
-        char lastChar = binaryContent[0];
-        int count = 1;
+        StringBuilder sb_KomprimierterInhalt = new StringBuilder();
+        char c_LastChar = s_BinaryContent[0];
+        int i_Count = 1;
 
-        for (int i = 1; i < binaryContent.Length; i++)
+        for (int i = 1; i < s_BinaryContent.Length; i++)
         {
-            if (binaryContent[i] == lastChar)
+            if (s_BinaryContent[i] == c_LastChar)
             {
-                count++;
+                i_Count++;
             }
             else
             {
-                komprimierterInhalt.Append("{").Append(count).Append(lastChar);
-                lastChar = binaryContent[i];
-                count = 1;
+                sb_KomprimierterInhalt.Append("{").Append(i_Count).Append(c_LastChar);
+                c_LastChar = s_BinaryContent[i];
+                i_Count = 1;
             }
         }
-        komprimierterInhalt.Append("{").Append(count).Append(lastChar);
+        sb_KomprimierterInhalt.Append("{").Append(i_Count).Append(c_LastChar);
 
-        return komprimierterInhalt.ToString();
+        return sb_KomprimierterInhalt.ToString();
     }
-    
 }
