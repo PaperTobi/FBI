@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Copyreight Thomas!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+using System;
 using System.IO;
 using System.IO.MemoryMappedFiles;
 using System.Collections;
