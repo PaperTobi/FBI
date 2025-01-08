@@ -5,14 +5,6 @@ using System.Text;
 
 class Program
 {
-    static void Main(string[] args)
-    {
-        string s_Datei = "Datei.txt";
-        string s_DateiKomprimiert = "komprimierteDatei.txt";
-        string s_BinaryContent = LesenUndKonvertieren(s_Datei);
-        string s_KomprimierterInhalt = Komprimieren(s_BinaryContent);
-    }
-
     static string LesenUndKonvertieren(string s_Datei)
     {
         StringBuilder sb_BinaryContent = new StringBuilder();

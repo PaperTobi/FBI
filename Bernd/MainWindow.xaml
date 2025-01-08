@@ -1,0 +1,111 @@
+﻿<Window x:Class="UserInterfaceProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UserInterfaceProject"
+        mc:Ignorable="d"
+        Title="UserInterface" 
+        Height="450" 
+        Width="800"
+        AllowDrop="True"
+        ResizeMode="NoResize"
+        WindowState="Normal">
+    <Grid AllowDrop="True" Name="MainGrid">
+        <!-- Ausführen-Button -->
+        <Button x:Name="Execute" 
+                Content="Ausführen" 
+                HorizontalAlignment="Center" 
+                Margin="0,313,0,0" 
+                VerticalAlignment="Top" 
+                Height="37" 
+                Width="92"
+                Click="ExecuteClick"/>
+
+        <!-- TextBox für Drag-and-Drop (Dateinamen) -->
+        <TextBox x:Name="Source" 
+                 HorizontalAlignment="Left" 
+                 Margin="71,336,0,0" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" 
+                 Width="178" 
+                 Height="49" 
+                 TextAlignment="Center" 
+                 AllowDrop="True"
+                 PreviewDragOver="SourcePreviewOver"
+                 PreviewDrop="SourcePreviewDrop" 
+                 DragEnter="SourceEnter" 
+                 DragOver="SourceOver" 
+                 Drop="SourceDrop"/>
+
+        <!-- Hilfe-Button -->
+        <Button x:Name="Help" 
+                Content="Hilfe" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                Height="29" 
+                Width="60"
+                Click="HelpClick"/>
+
+        <!-- Leeren-Button -->
+        <Button x:Name="Clear" 
+                Content="Leeren" 
+                HorizontalAlignment="Center" 
+                Margin="0,366,0,0" 
+                VerticalAlignment="Top" 
+                Height="38" 
+                Width="92"
+                Click="ClearClick"/>
+
+        <!-- Einstellungen-Button -->
+        <Button x:Name="Settings" 
+                Content="Einstellungen" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Width="82" 
+                Click="SettingsClick"/>
+
+        <!-- Vorschau für die Quelle -->
+        <StackPanel HorizontalAlignment="Left" Margin="41,58,0,0" VerticalAlignment="Top" Width="274" Height="224">
+            <TextBox x:Name="PreviewSource" 
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" 
+                     Width="274" 
+                     Height="200" 
+                     ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                     IsReadOnly="True" />
+            <Image x:Name="PreviewSourceImage" 
+                   VerticalAlignment="Top" 
+                   Width="274" 
+                   Height="200" 
+                   Visibility="Collapsed"/>
+        </StackPanel>
+
+        <!-- Vorschau für das Ergebnis -->
+        <StackPanel HorizontalAlignment="Left" Margin="494,58,0,0" VerticalAlignment="Top" Width="274" Height="224">
+            <TextBox x:Name="PreviewResult" 
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" 
+                     Width="274" 
+                     Height="200" 
+                     ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                     IsReadOnly="True" />
+            <Image x:Name="PreviewResultImage" 
+                   VerticalAlignment="Top" 
+                   Width="274" 
+                   Height="200" 
+                   Visibility="Collapsed"/>
+        </StackPanel>
+
+        <!-- Ergebnis-Button -->
+        <Button x:Name="Result" 
+                HorizontalAlignment="Left" 
+                Margin="575,339,0,0" 
+                VerticalAlignment="Top" 
+                Height="44" 
+                Width="137"
+                Click="ResultClick"
+                Content=""/>
+    </Grid>
+</Window>
+

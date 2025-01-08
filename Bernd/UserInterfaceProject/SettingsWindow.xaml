@@ -1,0 +1,8 @@
+﻿<Window x:Class="UserInterfaceProject.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Einstellungen" Height="200" Width="300" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Button x:Name="ToggleModeButton" Content="Wechsel zu Dark Mode" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" Height="40" Click="ToggleModeButton_Click"/>
+    </Grid>
+</Window>
